@@ -1,0 +1,172 @@
+{
+  "findings": [
+    {
+      "kind": "unbilled",
+      "asset_id": "GEN-201",
+      "date": "2026-10-17",
+      "unit": "kWh",
+      "field_quantity": "5555.678",
+      "telemetry_quantity": "5555.678",
+      "ledger_quantity": null,
+      "amount_cents": 102780,
+      "amount_usd": "1027.80",
+      "detail": "work recorded, no ledger line; priced 5555.678 kWh at last known $0.185/kWh"
+    },
+    {
+      "kind": "unbilled",
+      "asset_id": "WTR-105",
+      "date": "2026-10-09",
+      "unit": "m3",
+      "field_quantity": "335.309",
+      "telemetry_quantity": "335.309",
+      "ledger_quantity": null,
+      "amount_cents": 39566,
+      "amount_usd": "395.66",
+      "detail": "work recorded, no ledger line; priced 335.309 m3 at last known $1.18/m3"
+    },
+    {
+      "kind": "unbilled",
+      "asset_id": "WTR-101",
+      "date": "2026-10-05",
+      "unit": "m3",
+      "field_quantity": "149.357",
+      "telemetry_quantity": "149.357",
+      "ledger_quantity": null,
+      "amount_cents": 18670,
+      "amount_usd": "186.70",
+      "detail": "work recorded, no ledger line; priced 149.357 m3 at last known $1.25/m3"
+    },
+    {
+      "kind": "unbilled",
+      "asset_id": "WTR-102",
+      "date": "2026-10-12",
+      "unit": "m3",
+      "field_quantity": null,
+      "telemetry_quantity": "80.854",
+      "ledger_quantity": null,
+      "amount_cents": 10107,
+      "amount_usd": "101.07",
+      "detail": "work recorded, no ledger line; priced 80.854 m3 at last known $1.25/m3"
+    },
+    {
+      "kind": "quantity_mismatch",
+      "asset_id": "WTR-103",
+      "date": "2026-10-19",
+      "unit": "m3",
+      "field_quantity": "208.867",
+      "telemetry_quantity": "208.867",
+      "ledger_quantity": "167.093",
+      "amount_cents": 5055,
+      "amount_usd": "50.55",
+      "detail": "telemetry 208.867 vs ledger 167.093 m3 at $1.21/m3"
+    },
+    {
+      "kind": "unsupported_billing",
+      "asset_id": "WTR-108",
+      "date": "2026-10-11",
+      "unit": "m3",
+      "field_quantity": null,
+      "telemetry_quantity": null,
+      "ledger_quantity": "40",
+      "amount_cents": -5000,
+      "amount_usd": "-50.00",
+      "detail": "billed with no field record or telemetry: INV-5076"
+    },
+    {
+      "kind": "quantity_mismatch",
+      "asset_id": "GEN-201",
+      "date": "2026-10-22",
+      "unit": "kWh",
+      "field_quantity": "2752.975",
+      "telemetry_quantity": "2752.975",
+      "ledger_quantity": "3000.742",
+      "amount_cents": -4584,
+      "amount_usd": "-45.84",
+      "detail": "telemetry 2752.975 vs ledger 3000.742 kWh at $0.185/kWh"
+    },
+    {
+      "kind": "quantity_mismatch",
+      "asset_id": "WTR-104",
+      "date": "2026-10-20",
+      "unit": "m3",
+      "field_quantity": "38.357",
+      "telemetry_quantity": "38.357",
+      "ledger_quantity": "33.754",
+      "amount_cents": 608,
+      "amount_usd": "6.08",
+      "detail": "telemetry 38.357 vs ledger 33.754 m3 at $1.32/m3"
+    },
+    {
+      "kind": "unbilled",
+      "asset_id": "GEN-202",
+      "date": "2026-10-01",
+      "unit": "kWh",
+      "field_quantity": "3565.563",
+      "telemetry_quantity": "3565.563",
+      "ledger_quantity": null,
+      "amount_cents": null,
+      "amount_usd": null,
+      "detail": "work recorded, no ledger line; no earlier price for this asset in kWh"
+    },
+    {
+      "kind": "unbilled",
+      "asset_id": "GEN-202",
+      "date": "2026-10-02",
+      "unit": "kWh",
+      "field_quantity": "2054.116",
+      "telemetry_quantity": "2054.116",
+      "ledger_quantity": null,
+      "amount_cents": null,
+      "amount_usd": null,
+      "detail": "work recorded, no ledger line; no earlier price for this asset in kWh"
+    },
+    {
+      "kind": "unbilled",
+      "asset_id": "GEN-202",
+      "date": "2026-10-03",
+      "unit": "kWh",
+      "field_quantity": "2560.123",
+      "telemetry_quantity": "2560.123",
+      "ledger_quantity": null,
+      "amount_cents": null,
+      "amount_usd": null,
+      "detail": "work recorded, no ledger line; no earlier price for this asset in kWh"
+    },
+    {
+      "kind": "field_telemetry_mismatch",
+      "asset_id": "WTR-107",
+      "date": "2026-10-08",
+      "unit": "m3",
+      "field_quantity": "117.997",
+      "telemetry_quantity": "98.331",
+      "ledger_quantity": "98.331",
+      "amount_cents": null,
+      "amount_usd": null,
+      "detail": "field 117.997 vs telemetry 98.331 m3"
+    },
+    {
+      "kind": "unit_mismatch",
+      "asset_id": "WTR-108",
+      "date": "2026-10-25",
+      "field_quantity": null,
+      "telemetry_quantity": null,
+      "ledger_quantity": null,
+      "amount_cents": null,
+      "amount_usd": null,
+      "detail": "sources disagree on unit: gal in ledger; m3 in field+telemetry"
+    }
+  ],
+  "summary": {
+    "counts": {
+      "field_telemetry_mismatch": 1,
+      "quantity_mismatch": 3,
+      "unbilled": 7,
+      "unit_mismatch": 1,
+      "unsupported_billing": 1
+    },
+    "total_findings": 13,
+    "total_priced_exposure_cents": 186370,
+    "total_priced_exposure_usd": "1863.70",
+    "unpriced": 5
+  }
+}
