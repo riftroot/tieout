@@ -1,0 +1,8 @@
+{
+  "off": {
+    "vuln-scan": {
+      "reason": "tieout is a Go module with no dependencies (go.mod has no require block), so Go writes no go.sum and vuln-scan has no lockfile to read; it fails closed on every run. Turn this back on when the first dependency adds a go.sum.",
+      "since": "2026-11-25"
+    }
+  }
+}
