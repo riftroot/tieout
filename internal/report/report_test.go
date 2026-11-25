@@ -18,3 +18,10 @@ func TestTotalOverflowFails(t *testing.T) {
 		}
 	}
 }
+
+func TestMinInt64AmountFails(t *testing.T) {
+	a := int64(math.MinInt64)
+	if _, err := Summarize([]reconcile.Finding{{Kind: reconcile.UnsupportedBilling, AmountCents: &a}}); !errors.Is(err, reconcile.ErrOverflow) {
+		t.Fatalf("want ErrOverflow, got %v", err)
+	}
+}

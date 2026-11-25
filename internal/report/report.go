@@ -30,6 +30,9 @@ func Summarize(fs []reconcile.Finding) (Summary, error) {
 			continue
 		}
 		a := *f.AmountCents
+		if a == math.MinInt64 {
+			return Summary{}, reconcile.ErrOverflow
+		}
 		if a < 0 {
 			a = -a
 		}
