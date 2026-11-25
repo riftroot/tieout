@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"text/tabwriter"
 
 	"github.com/riftroot/tieout/internal/decimal"
@@ -19,7 +20,8 @@ type Summary struct {
 	Unpriced      int
 }
 
-func Summarize(fs []reconcile.Finding) Summary {
+// Summarize fails rather than wrapping when the total exposure overflows int64.
+func Summarize(fs []reconcile.Finding) (Summary, error) {
 	s := Summary{Counts: map[reconcile.Kind]int{}}
 	for _, f := range fs {
 		s.Counts[f.Kind]++
@@ -31,15 +33,21 @@ func Summarize(fs []reconcile.Finding) Summary {
 		if a < 0 {
 			a = -a
 		}
+		if a > math.MaxInt64-s.ExposureCents {
+			return Summary{}, reconcile.ErrOverflow
+		}
 		s.ExposureCents += a
 	}
-	return s
+	return s, nil
 }
 
 func usd(cents int64) string { return decimal.Format(cents, 2, 2) }
 
 func Text(w io.Writer, fs []reconcile.Finding) error {
-	s := Summarize(fs)
+	s, err := Summarize(fs)
+	if err != nil {
+		return err
+	}
 	if len(fs) == 0 {
 		fmt.Fprintln(w, "No findings.")
 	} else {
@@ -63,7 +71,7 @@ func Text(w io.Writer, fs []reconcile.Finding) error {
 	}
 	fmt.Fprintf(w, "  %-25s %d\n", "total findings", len(fs))
 	fmt.Fprintf(w, "  %-25s USD %s\n", "total priced exposure", usd(s.ExposureCents))
-	_, err := fmt.Fprintf(w, "  %-25s %d\n", "unpriced findings", s.Unpriced)
+	_, err = fmt.Fprintf(w, "  %-25s %d\n", "unpriced findings", s.Unpriced)
 	return err
 }
 
@@ -97,7 +105,10 @@ func str(q *int64) *string {
 }
 
 func JSON(w io.Writer, fs []reconcile.Finding) error {
-	s := Summarize(fs)
+	s, err := Summarize(fs)
+	if err != nil {
+		return err
+	}
 	counts := map[reconcile.Kind]int{}
 	for _, k := range reconcile.Kinds {
 		counts[k] = s.Counts[k]

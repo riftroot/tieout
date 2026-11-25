@@ -159,8 +159,8 @@ func (p *rowParser) text(i int, col string) string {
 // verbatim, so control characters are refused.
 func (p *rowParser) optText(i int, col string) string {
 	v := p.rec.fields[i]
-	if strings.IndexFunc(v, func(r rune) bool { return unicode.IsControl(r) || r == utf8.RuneError }) >= 0 {
-		p.fail(col, "must not contain control characters or invalid UTF-8")
+	if strings.IndexFunc(v, func(r rune) bool { return unicode.IsControl(r) || unicode.Is(unicode.Cf, r) || r == utf8.RuneError }) >= 0 {
+		p.fail(col, "must not contain control or invisible formatting characters, or invalid UTF-8")
 	}
 	return v
 }
